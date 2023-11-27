@@ -12,16 +12,6 @@ message GreetResponse{
     string result = 1;
 }
 
-message CaclRequest{
-    int32 first_number = 1;
-    int32 second_number = 2;
-}
-
-message CaclResponse{
-    int32 result = 1;
-}
-
 service GreetService{
     rpc Greet (GreetRequest) returns (GreetResponse);
-    rpc Calc (CaclRequest) returns (CaclResponse);
 }
