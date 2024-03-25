@@ -27,5 +27,4 @@ func Avg(stream pb.CalculatorService_AvgServer) error {
 
 		count++
 	}
-	return nil
 }
