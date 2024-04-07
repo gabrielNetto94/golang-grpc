@@ -1,9 +1,8 @@
 package main
 
 import (
-	"context"
-	"fmt"
 	"log"
+	"time"
 
 	pb "golang-grpc/greet/proto"
 
@@ -21,8 +20,13 @@ func main() {
 	}
 	defer conn.Close()
 	client := pb.NewGreetServiceClient(conn)
-	doGreet(client)
-	//doGreetManytimes(client)
+
+	// doGreet(client)
+	// doGreetManytimes(client)
+	// doGreetEveryone(client)
+	// doLongGreet(client)
+
+	doGreetWithDeadline(client, 1*time.Second)
 
 	// router := gin.Default()
 
@@ -35,30 +39,5 @@ func main() {
 
 	// })
 	// router.Run(":5000")
-
-}
-
-func DoLongGreet(ctx pb.GreetServiceClient) string {
-
-	reqs := []*pb.GreetRequest{
-		{FirstName: "Et Bil2u"},
-		{FirstName: "asdf"},
-		{FirstName: "Hello"},
-		{FirstName: "World"},
-	}
-
-	stream, _ := ctx.LongGreet(context.Background())
-
-	for _, req := range reqs {
-		stream.Send(req)
-		//time.Sleep(time.Second * 1)
-	}
-
-	resp, err := stream.CloseAndRecv()
-	if err != nil {
-		fmt.Println("Error :", err.Error())
-	}
-
-	return resp.Result
 
 }
