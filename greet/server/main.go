@@ -25,9 +25,11 @@ func main() {
 
 	opts := []grpc.ServerOption{}
 
+	path := "/home/gabriel/me/golang-grpc/"
+
 	if configs.GetEnv("SSL") == "TRUE" {
-		certFile := "ssl/server.crt"
-		keyFile := "ssl/server.pem"
+		certFile := path + "ssl/server.crt"
+		keyFile := path + "ssl/server.pem"
 		creds, err := credentials.NewServerTLSFromFile(certFile, keyFile)
 		if err != nil {
 			log.Fatalf("fail load cert: %v", err.Error())

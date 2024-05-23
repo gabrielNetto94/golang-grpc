@@ -17,8 +17,10 @@ func main() {
 
 	opts := []grpc.DialOption{}
 
+	path := "/home/gabriel/me/golang-grpc/"
+
 	if configs.GetEnv("SSL") == "TRUE" {
-		certFile := "ssl/ca.crt"
+		certFile := path + "ssl/ca.crt"
 		creds, err := credentials.NewClientTLSFromFile(certFile, "")
 
 		if err != nil {
